@@ -6,7 +6,7 @@ def COLOR_MAP = [
 pipeline {
   agent any
   environment {
-    WORKSPACE = "${env.WORKSPACE}"
+    WORKSPACE = "${env.WORKSPACE}/realworld-cicd-pipeline-project-main"
     NEXUS_CREDENTIAL_ID = 'Nexus-Credential'
     //NEXUS_USER = "$NEXUS_CREDS_USR"
     //NEXUS_PASSWORD = "$Nexus-Token"
@@ -111,7 +111,7 @@ pipeline {
         steps {
             dir('realworld-cicd-pipeline-project-main/') {
             withCredentials([usernamePassword(credentialsId: 'Ansible-Credential', passwordVariable: 'PASSWORD', usernameVariable: 'USER_NAME')]) {
-                sh "ansible-playbook -i ${WORKSPACE}/ansible-config/aws_ec2.yaml ${WORKSPACE}/deploy.yaml --extra-vars \"ansible_user=$USER_NAME ansible_password=$PASSWORD hosts=tag_Environment_$HOSTS workspace_path=$WORKSPACE\""
+                sh "ansible-playbook -i ${WORKSPACE}realworld-cicd-pipeline-project-main/ansible-config/aws_ec2.yaml ${WORKSPACE}realworld-cicd-pipeline-project-main/deploy.yaml --extra-vars \"ansible_user=$USER_NAME ansible_password=$PASSWORD hosts=tag_Environment_$HOSTS workspace_path=$WORKSPACE\""
             }
         }
         }
@@ -123,7 +123,7 @@ pipeline {
         steps {
             dir('realworld-cicd-pipeline-project-main/') {
             withCredentials([usernamePassword(credentialsId: 'Ansible-Credential', passwordVariable: 'PASSWORD', usernameVariable: 'USER_NAME')]) {
-                sh "ansible-playbook -i ${WORKSPACE}/ansible-config/aws_ec2.yaml ${WORKSPACE}/deploy.yaml --extra-vars \"ansible_user=$USER_NAME ansible_password=$PASSWORD hosts=tag_Environment_$HOSTS workspace_path=$WORKSPACE\""
+                sh "ansible-playbook -i ${WORKSPACE}realworld-cicd-pipeline-project-main/ansible-config/aws_ec2.yaml ${WORKSPACE}realworld-cicd-pipeline-project-main/deploy.yaml --extra-vars \"ansible_user=$USER_NAME ansible_password=$PASSWORD hosts=tag_Environment_$HOSTS workspace_path=$WORKSPACE\""
             }
         }
         }
@@ -140,7 +140,7 @@ pipeline {
         steps {
             dir('realworld-cicd-pipeline-project-main/') {
             withCredentials([usernamePassword(credentialsId: 'Ansible-Credential', passwordVariable: 'PASSWORD', usernameVariable: 'USER_NAME')]) {
-                sh "ansible-playbook -i ${WORKSPACE}/ansible-config/aws_ec2.yaml ${WORKSPACE}/deploy.yaml --extra-vars \"ansible_user=$USER_NAME ansible_password=$PASSWORD hosts=tag_Environment_$HOSTS workspace_path=$WORKSPACE\""
+                sh "ansible-playbook -i ${WORKSPACE}realworld-cicd-pipeline-project-main/ansible-config/aws_ec2.yaml ${WORKSPACE}realworld-cicd-pipeline-project-main/deploy.yaml --extra-vars \"ansible_user=$USER_NAME ansible_password=$PASSWORD hosts=tag_Environment_$HOSTS workspace_path=$WORKSPACE\""
             }
          }
         }
