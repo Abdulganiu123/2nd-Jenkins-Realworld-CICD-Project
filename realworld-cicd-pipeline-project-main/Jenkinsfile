@@ -26,7 +26,6 @@ pipeline {
         sh 'mvn clean package'
       }
       }
-    }
       post {
         success {
           echo ' now Archiving '
@@ -54,7 +53,6 @@ pipeline {
             sh 'mvn checkstyle:checkstyle'
             } 
         }
-     } 
         post {
             success {
                 echo 'Generated Analysis Result'
