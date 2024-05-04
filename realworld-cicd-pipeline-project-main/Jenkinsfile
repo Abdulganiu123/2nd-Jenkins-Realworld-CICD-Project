@@ -22,8 +22,11 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        dir ('realworld-cicd-pipeline-project-main/') {
         sh 'mvn clean package'
       }
+      }
+    }
       post {
         success {
           echo ' now Archiving '
@@ -33,18 +36,25 @@ pipeline {
     }
     stage('Unit Test'){
         steps {
-            sh 'mvn test'
-        }
+        dir ('realworld-cicd-pipeline-project-main/') {
+        sh 'mvn test'
+      }
+      }
     }
     stage('Integration Test'){
         steps {
-          sh 'mvn verify -DskipUnitTests'
-        }
+        dir ('realworld-cicd-pipeline-project-main/') {
+        sh 'mvn verify -DskipUnitTests'
+      }
+      }
     }
     stage ('Checkstyle Code Analysis'){
         steps {
+            dir ('realworld-cicd-pipeline-project-main/') {
             sh 'mvn checkstyle:checkstyle'
+            } 
         }
+     } 
         post {
             success {
                 echo 'Generated Analysis Result'
